@@ -1,17 +1,19 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <h6 class="text-muted text-uppercase">welcome to</h6>
+    <h1>Frank's Garage Store</h1>
+    <hr class="mb-5">
+    <GarageMain/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GarageMain from './components/garage-main.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    GarageMain
   }
 }
 </script>
