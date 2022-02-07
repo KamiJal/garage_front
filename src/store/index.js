@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import WAREHOUSE_MODULE from './modules/warehouse-module';
+import WAREHOUSES_MODULE from './modules/warehouses-module';
 
 Vue.use(Vuex)
 
 const STORE = new Vuex.Store({
     modules: {
-        warehouse: WAREHOUSE_MODULE
+        warehouses: WAREHOUSES_MODULE
     },
     state: {
         

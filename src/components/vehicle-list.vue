@@ -27,22 +27,57 @@
           <td>{{ vehicle.licensed }}</td>
           <td>{{ vehicle.date_added }}</td>
           <td>
-            <button class="btn btn-outline-info" v-if="vehicle.licensed">
+            <button
+              class="btn btn-outline-info"
+              v-if="vehicle.licensed"
+              data-bs-toggle="modal"
+              data-bs-target="#vehicleDetailsModal"
+              v-on:click.prevent="setSelectedVehicle(vehicle._id)"
+            >
               Details
             </button>
           </td>
         </tr>
       </tbody>
     </table>
+    <VehicleDetails
+      v-bind:vehicle="selectedVehicle"
+      v-bind:warehouse="warehouse"
+    />
   </div>
 </template>
 
 <script>
+import VehicleDetails from "./vehicle-details.vue";
+
 export default {
   name: "VehicleList",
+  components: {
+    VehicleDetails,
+  },
+  data() {
+    return {
+      vehicle: {},
+    };
+  },
   props: {
     vehicles: {
       type: Array,
+      required: true,
+    },
+    warehouse: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    selectedVehicle() {
+      return this.vehicle;
+    },
+  },
+  methods: {
+    setSelectedVehicle(id) {
+      this.vehicle = this.vehicles.find(vehicle => vehicle._id === id);
     },
   },
 };

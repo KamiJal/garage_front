@@ -10,14 +10,14 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            {{ $store.getters.warehouseActiveName }}
+            {{ $store.getters.warehousesActiveName }}
           </button>
           <ul
             class="dropdown-menu dropdown-menu-right"
             aria-labelledby="warehouseDropdown"
           >
             <li
-              v-for="warehouse in $store.getters.warehouseList"
+              v-for="warehouse in $store.getters.warehousesList"
               v-bind:key="warehouse._id"
               v-bind:id="warehouse._id"
             >
@@ -25,7 +25,7 @@
                 class="dropdown-item"
                 href="#"
                 v-on:click="
-                  $store.dispatch('warehouseSetActiveWarehouse', warehouse)
+                  $store.dispatch('warehousesSetActiveWarehouse', warehouse)
                 "
                 >{{ warehouse.name }}</a
               >
@@ -35,9 +35,10 @@
       </div>
     </div>
     <hr class="mt-3" />
-    <div class="row" v-if="$store.getters.warehouseActive">
+    <div class="row" v-if="$store.getters.warehousesActive">
       <VehicleList
-        v-bind:vehicles="$store.getters.warehouseActive.cars.vehicles"
+        v-bind:vehicles="$store.getters.warehousesActive.cars.vehicles"
+        v-bind:warehouse="activeWarehouseInfo"
       />
     </div>
   </div>
@@ -54,5 +55,19 @@ export default {
   async created() {
     await this.$store.dispatch("apiGetAllWarehouses");
   },
+  computed: {
+    activeWarehouseInfo(){
+      const warehouse = this.$store.getters.warehousesActive;
+      return {
+        id: warehouse._id,
+        name: warehouse.name,
+        location: {
+          name: warehouse.cars.location,
+          lat: warehouse.location.lat,
+          long: warehouse.location.long
+        }
+      }
+    }
+  }
 };
 </script>

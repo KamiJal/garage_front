@@ -1,22 +1,22 @@
 import API_CLIENT from '../../api/index'
 
-const WAREHOUSE_MODULE = {
+const WAREHOUSES_MODULE = {
     state: () => ({
-        warehouse: {
+        warehouses: {
             list: [],
             active: null
         }
     }),
     getters: {
-        warehouseList(state) {
-            return state.warehouse.list;
+        warehousesList(state) {
+            return state.warehouses.list;
         },
-        warehouseActive(state) {
-            return state.warehouse.active;
+        warehousesActive(state) {
+            return state.warehouses.active;
         },
-        warehouseActiveName(state) {
-            if (state.warehouse.active) {
-                return state.warehouse.active.name
+        warehousesActiveName(state) {
+            if (state.warehouses.active) {
+                return state.warehouses.active.name
             }
             return 'Choose warehouse'
         }
@@ -31,20 +31,20 @@ const WAREHOUSE_MODULE = {
                 // error
             }
 
-            commit('setWarehouseList', warehouses);
+            commit('setWarehousesList', warehouses);
         },
-        async warehouseSetActiveWarehouse({commit}, payload){
+        async warehousesSetActiveWarehouse({commit}, payload){
             commit('setActiveWarehouse', payload)
         }
     },
     mutations: {
-        setWarehouseList(state, payload) {
-            state.warehouse.list = payload;
+        setWarehousesList(state, payload) {
+            state.warehouses.list = payload;
         },
         setActiveWarehouse(state, payload) {
-            state.warehouse.active = payload;
+            state.warehouses.active = payload;
         }
     }
 };
 
-export default WAREHOUSE_MODULE;
+export default WAREHOUSES_MODULE;
