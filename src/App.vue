@@ -19,16 +19,24 @@
             <div class="navbar-nav">
               <a
                 class="nav-link fs-5"
-                v-bind:class="{active: activeComponent === 'Warehouses'}"
+                v-bind:class="{
+                  active: $store.getters.activeComponent === 'Warehouses',
+                }"
                 href="#"
-                v-on:click.prevent="setActive('Warehouses')"
+                v-on:click.prevent="
+                  $store.dispatch('setActiveComponent', 'Warehouses')
+                "
                 >Warehouse List</a
               >
               <a
                 class="nav-link fs-5"
-                v-bind:class="{active: activeComponent === 'ShoppingCart'}"
+                v-bind:class="{
+                  active: $store.getters.activeComponent === 'ShoppingCart',
+                }"
                 href="#"
-                v-on:click.prevent="setActive('ShoppingCart')"
+                v-on:click.prevent="
+                  $store.dispatch('setActiveComponent', 'ShoppingCart')
+                "
                 >Shopping Cart</a
               >
             </div>
@@ -38,7 +46,7 @@
     </nav>
     <div id="app" class="container">
       <keep-alive>
-        <component v-bind:is="activeComponent" />
+        <component v-bind:is="$store.getters.activeComponent" />
       </keep-alive>
     </div>
   </div>
@@ -53,21 +61,6 @@ export default {
   components: {
     Warehouses,
     ShoppingCart,
-  },
-  data() {
-    return {
-      active: "Warehouses",
-    };
-  },
-  computed: {
-    activeComponent() {
-      return this.active;
-    },
-  },
-  methods: {
-    setActive(component) {
-      this.active = component;
-    },
   },
 };
 </script>
