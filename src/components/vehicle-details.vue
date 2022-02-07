@@ -36,6 +36,24 @@
           >
             Close
           </button>
+          <button
+            type="button"
+            class="btn btn-info"
+            v-if="!isInShoppingCart(vehicle)"
+            v-on:click.prevent="$store.dispatch('addToShoppingCart', vehicle)"
+          >
+            Add to shopping card
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            v-else
+            v-on:click.prevent="
+              $store.dispatch('removeFromShoppingCart', vehicle)
+            "
+          >
+            Delete from shopping card
+          </button>
         </div>
       </div>
     </div>
@@ -53,6 +71,11 @@ export default {
     warehouse: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    isInShoppingCart(vehicle) {
+      return this.$store.getters.shoppingCartList.includes(vehicle);
     },
   },
 };

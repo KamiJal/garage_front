@@ -1,21 +1,75 @@
 <template>
-  <div id="app" class="container">
-    <h6 class="text-muted text-uppercase">welcome to</h6>
-    <h1>Frank's Garage Store</h1>
-    <hr class="mb-5">
-    <Warehouses/>
+  <div class="mx-auto w-75">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+      <div class="container-fluid">
+        <div class="d-flex">
+          <a class="navbar-brand mx-5 fs-4">Frank's Garage Store</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a
+                class="nav-link fs-5"
+                v-bind:class="{active: activeComponent === 'Warehouses'}"
+                href="#"
+                v-on:click.prevent="setActive('Warehouses')"
+                >Warehouse List</a
+              >
+              <a
+                class="nav-link fs-5"
+                v-bind:class="{active: activeComponent === 'ShoppingCart'}"
+                href="#"
+                v-on:click.prevent="setActive('ShoppingCart')"
+                >Shopping Cart</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="app" class="container">
+      <keep-alive>
+        <component v-bind:is="activeComponent" />
+      </keep-alive>
+    </div>
   </div>
 </template>
 
 <script>
-import Warehouses from './components/warehouses.vue'
+import Warehouses from "./components/warehouses.vue";
+import ShoppingCart from "./components/shopping-cart.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Warehouses
-  }
-}
+    Warehouses,
+    ShoppingCart,
+  },
+  data() {
+    return {
+      active: "Warehouses",
+    };
+  },
+  computed: {
+    activeComponent() {
+      return this.active;
+    },
+  },
+  methods: {
+    setActive(component) {
+      this.active = component;
+    },
+  },
+};
 </script>
 
 <style>

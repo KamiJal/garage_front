@@ -4,7 +4,7 @@
       <div class="col">
         <div class="dropdown">
           <button
-            class="btn btn-info btn-lg dropdown-toggle"
+            class="btn btn-info btn-lg dropdown-toggle text-white"
             type="button"
             id="warehouseDropdown"
             data-bs-toggle="dropdown"
