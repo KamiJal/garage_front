@@ -3,17 +3,17 @@
     <h6 class="text-muted text-uppercase">welcome to</h6>
     <h1>Frank's Garage Store</h1>
     <hr class="mb-5">
-    <GarageMain/>
+    <Warehouses/>
   </div>
 </template>
 
 <script>
-import GarageMain from './components/garage-main.vue'
+import Warehouses from './components/warehouses.vue'
 
 export default {
   name: 'App',
   components: {
-    GarageMain
+    Warehouses
   }
 }
 </script>

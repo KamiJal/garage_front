@@ -14,16 +14,23 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(vehicle, index) in vehicles" v-bind:key="vehicle._id" v-bind:id="vehicle._id">
-          <th scope="row"></th>
-          <td>{{index}}</td>
-          <td>{{vehicle.make}}</td>
-          <td>{{vehicle.model}}</td>
-          <td>{{vehicle.year_model}}</td>
-          <td>{{vehicle.price}}</td>
-          <td>{{vehicle.licensed}}</td>
-          <td>{{vehicle.date_added}}</td>
-          <td><button class="btn btn-outline-info" v-if="vehicle.licensed">Details</button></td>
+        <tr
+          v-for="(vehicle, index) in vehicles"
+          v-bind:key="vehicle._id"
+          v-bind:id="vehicle._id"
+        >
+          <th scope="row">{{ index }}</th>
+          <td>{{ vehicle.make }}</td>
+          <td>{{ vehicle.model }}</td>
+          <td>{{ vehicle.year_model }}</td>
+          <td>{{ vehicle.price }}</td>
+          <td>{{ vehicle.licensed }}</td>
+          <td>{{ vehicle.date_added }}</td>
+          <td>
+            <button class="btn btn-outline-info" v-if="vehicle.licensed">
+              Details
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -38,8 +45,5 @@ export default {
       type: Array,
     },
   },
-  created(){
-    console.log(this.vehicles);
-  }
 };
 </script>
