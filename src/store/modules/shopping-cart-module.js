@@ -18,7 +18,7 @@ const SHOPPING_CART_MODULE = {
             state.cart.list.forEach(element => {
                 sum += element.price;
             });
-            return sum;
+            return sum.toFixed(2);
         }
     },
     actions: {
